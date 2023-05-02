@@ -1,0 +1,60 @@
+\section{Introduction}
+
+  Semantic segmentation, which involves classifying each pixel in an image
+  into a set of predefined categories, is a fundamental task in computer vision,
+  and has a crucial role in autonomous driving systems to enable the vehicle
+  to understand and interpret its surroundings. Dividing the image into multiple
+  semantic regions is a key step in the perception pipeline of autonomous vehicles,
+  as it provides a rich representation of the environment identifying the instances
+  of objects and their relations.
+
+  % On the other hand, structured
+  % understanding of the environment is a central ability in human cognition to
+  % see the world as a collection of objects and their relations. It's a computationally
+  % intensive task that requires deep learning models to process large amounts of
+  % data in real-time.
+
+  % NOTE: Model and hardware problems
+  Autonomous vehicles operate in a wide range of environments, and thus, the real-time
+  performance of the segmentation algorithm is critical as it's a key component required
+  for safe and reliable decision-making. However, the computational resources available
+  in autonomous vehicles are often limited due to physical constraints including memory capacity
+  due to existence of large models and processing speed required for real-time responses.
+  These limitations pose significant challenges for implementing efficient and accurate
+  semantic segmentation algorithms on autonomous vehicles, as traditional methods typically
+  rely on computationally expensive deep neural networks with many parameters.
+
+  % NOTE: Dataset problems
+  In addition, complex scenes, very often contain many instances and abstract
+  levels, and high-resolution images to capture fine-grained details, pose
+  additional challenges for semantic segmentation algorithms. \tb{Complex scenes} require
+  the model to classify numerous objects accurately, even more
+  if the model request some hierarchical information. However, achieving
+  high accuracy in semantic segmentation is a challenging task due to presence of occlusions,
+  object overlaps and lighting variations, which can lead to inaccurate classification. \tb{High-resolution}
+  of the input images increase the computational demands of semantic segmentation models, which
+  can lead to a significant drop in performance, making it difficult to achieve real-time processing
+  required by autonomous vehicles.
+
+  % NOTE: Proposed solution
+  The objective is to enable real-time semantic segmentation on autonomous vehicles without
+  compromising the model accuracy while keeping the computational requirements low. Also,
+  should be able to handle different levels of scene detail and adapt to different driving
+  scenarios, due to dynamic and changing environments.
+
+  % Recently, transformers, a deep learning model have achieved state-of-the-art
+  % performance in natural language processing, so the paper propose a novel hierarchical
+  % semantic segmentation algorithm relying on transformers that's able to achieve high accuracy.
+
+  To evaluate the proposed approach, made use of benchmark datasets(\emph{i.e.}
+  Cityscapes\cite{cordts2016cityscapes}, Mapillary Vistas \cite{neuhold2017mapillary}) for semantic
+  segmentation in autonomous driving scenarios. This paper findings have important implications for
+  the development of \ti{practical} semantic segmentation algorithms for autonomous vehicles,
+  deploying embedded systems with constrained computational resources, in order
+  to contribute to the advancement of safe and reliable autonomous driving systems.
+  % Code example
+  % \begin{listing}[!ht]
+  %   \inputminted[breaklines, fontfamily=SourceSansPro-TLF]{cpp}{../src/competitive_template.cpp}
+  %   \caption{Testing \ti{competitive template} listing with \ti{minted}}
+  %   \label{master_service}
+  % \end{listing}
