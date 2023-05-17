@@ -1,0 +1,105 @@
+﻿Reference,Link,Publication Date,Journal,Source,Context,Research Gap,Research Fill,Limitations,
+"Deep Hierarchical Semantic Segmentation
+DOI:
+10.1109/CVPR52688.2022.00131","IEEE:
+https://ieeexplore.ieee.org/document/9878466
+Github:
+https://github.com/0liliulei/HieraSeg","06 18, 2022",IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"SalsaNext: Fast, Uncertainty-aware Semantic Segmentation of LiDAR Point Clouds for Autonomous Driving","Github:
+https://github.com/TiagoCortinhal/SalsaNext","03 7, 2020",,Paper,,,,,
+"You Only Look Once: Unified, Real-Time Object Detection
+DOI:
+10.1109/CVPR.2016.91","IEEE:
+https://ieeexplore.ieee.org/document/7780460
+","06 27, 2016",IEEE Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation
+DOI:
+10.1109/TPAMI.2016.2644615","IEEE:
+https://ieeexplore.ieee.org/abstract/document/7803544
+Github:
+https://github.com/kulkarnikeerti/SegNet-Semantic-Segmentation","12 1, 2017",IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI),Paper,,,,,
+Fully Convolutional Networks for Semantic Segmentation,"Github:
+https://github.com/shelhamer/fcn.berkeleyvision.org","01 1, 2015",IEEE Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"ViViT: A Video Vision Transformer
+DOI:
+10.1109/ICCV48922.2021.00676","IEEE:
+https://ieeexplore.ieee.org/document/9710415
+Github:
+https://github.com/google-research/scenic/tree/main/scenic/projects/vivit","10 10, 2021",IEEE/CVF International Conference on Computer Vision (ICCV),Paper,,,,,
+ENet: A Deep Neural Network Architecture for Real-Time Semantic Segmentation,"Github:
+https://github.com/iArunava/ENet-Real-Time-Semantic-Segmentation","06 7, 2016",,Paper,,,,,
+"U-Net: Convolutional Networks for Biomedical Image Segmentation
+DOI:
+10.1007/978-3-319-24574-4_28","Springer:
+https://link.springer.com/chapter/10.1007/978-3-319-24574-4_28","11 18, 2015",Medical Image Computing and Computer-Assisted Intervention (MICCAI),Paper,,,,,
+"Pyramid Adversarial Training Improves ViT Performance
+DOI:
+10.1109/CVPR52688.2022.01306","IEEE:
+https://ieeexplore.ieee.org/document/9878894
+Github:
+https://github.com/google-research/scenic/tree/main/scenic/projects/adversarialtraining","06 18, 2022",IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"Unified Perceptual Parsing for Scene Understanding
+DOI:
+10.1007/978-3-030-01228-1_26","Github:
+https://github.com/CSAILVision/unifiedparsing","10 6, 2018",Computer Vision (ECCV),Paper,,,,,
+"The Cityscapes Dataset for Semantic Urban Scene Understanding
+DOI:
+10.1109/CVPR.2016.350","IEEE:
+https://ieeexplore.ieee.org/document/7780719
+Web:
+https://www.cityscapes-dataset.com/","06 27, 2016",IEEE Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"ImageNet: A large-scale hierarchical image database
+DOI:
+10.1109/CVPR.2009.5206848","IEEE:
+https://ieeexplore.ieee.org/document/5206848
+Web:
+https://www.image-net.org/","06 20, 2009",IEEE Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"A ConvNet for the 2020s
+DOI:
+10.1109/CVPR52688.2022.01167","IEEE:
+https://ieeexplore.ieee.org/document/9879745
+Github:
+https://github.com/facebookresearch/ConvNeXt","06 18, 2022",IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"Bottleneck Transformers for Visual Recognition
+DOI:
+10.1109/CVPR46437.2021.01625","IEEE:
+https://ieeexplore.ieee.org/document/9577771
+Github:
+https://github.com/leaderj1001/BottleneckTransformers","06 20, 2021",IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"Swin Transformer: Hierarchical Vision Transformer using Shifted Windows
+DOI:
+10.1109/ICCV48922.2021.00986","IEEE:
+https://ieeexplore.ieee.org/document/9710580
+Github:
+https://github.com/microsoft/Swin-Transformer","10 10, 2021",IEEE/CVF International Conference on Computer Vision (ICCV),Paper,,,,,
+"Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions
+DOI:
+10.1109/ICCV48922.2021.00061","IEEE:
+https://ieeexplore.ieee.org/document/9711179
+Github:
+https://github.com/whai362/PVT","10 10, 2021",IEEE/CVF International Conference on Computer Vision (ICCV),Paper,,,,,
+"Multiview Transformers for Video Recognition
+DOI:
+10.1109/CVPR52688.2022.00333","IEEE:
+https://ieeexplore.ieee.org/document/9879777
+Github:
+https://github.com/google-research/scenic/tree/main/scenic/projects/mtv","06 18, 2022",IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"Masked Autoencoders Are Scalable Vision Learners
+DOI:
+10.1109/CVPR52688.2022.01553","IEEE:
+https://ieeexplore.ieee.org/document/9879206
+Github:
+https://github.com/facebookresearch/mae","06 18, 2022",IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"CMT: Convolutional Neural Networks Meet Vision Transformers
+DOI:
+10.1109/CVPR52688.2022.01186","IEEE:
+https://ieeexplore.ieee.org/document/9879701
+Github:
+https://github.com/FlyEgle/CMT-pytorch","06 18, 2022",IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,
+"Scaling Vision Transformers
+DOI:
+10.1109/CVPR52688.2022.01179","IEEE:
+https://ieeexplore.ieee.org/document/9880094
+Github:
+https://github.com/google-research/big_vision
+","06 18, 2022",IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR),Paper,,,,,

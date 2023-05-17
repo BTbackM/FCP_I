@@ -21,7 +21,7 @@
 \definecolor{pdfpurple}{RGB}{200, 150, 200}
 
 % Cite color
-\hypersetup{citecolor=green}
+\hypersetup{citecolor=blue}
 
 % Basic font styles
 \newcommand{\tb}[1]{\textbf{{#1}}}
@@ -130,3 +130,12 @@
 
 \lstset{style=mystyle}
 \usemintedstyle{gruvbox-light}
+
+% Subsubsection bold font
+\makeatletter
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\bfseries}% <-- Bold font formatting
+}
+\makeatother
