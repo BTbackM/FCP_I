@@ -1,4 +1,4 @@
-\section{Theorical Foundations}
+\section{Theoretical Foundations}
 
   \subsection{Fundamentals of Semantic Segmentation}
 
@@ -145,9 +145,9 @@
       a semantic segmentation model, but it still does not evaluate the background
       accuracy.
 
-    \subsubsection{Frecuency Weighted Intersection over Union}
+    \subsubsection{Frequency Weighted Intersection over Union}
 
-      \ti{Frecuency Weighted Intersection over Union (FWIoU)} extends the mIoU metric
+      \ti{Frequency Weighted Intersection over Union (FWIoU)} extends the mIoU metric
       by taking into account the \ti{class imbalance problem} by assigning a weight
       to each semantic category based on the number of pixels in the ground truth. This
       means that the FWIoU penalizes more the incorrect classification of pixels in
@@ -163,40 +163,228 @@
 
   \subsection{Fundamentals of Convolutional Neural Networks}
 
-    \Blindtext[1]
+    \ti{Convolutional Neural Networks (CNNs)} are a type of neural network that
+    are specially designed to process data that has a grid-like topology, such as
+    images and videos\cite{goodfellow2016deep}. CNNs are composed of a series of layers that
+    transform the input data into a more useful representation for a given task,
+    tipically composed by layers like \ti{convolutional layers}, \ti{pooling layers},
+    and a \ti{activation function}.
 
-    \subsubsection{Convolutions}
+    CNN applies operations such as \ti{convolutions} and \ti{pooling} to the input data,
+    in order to extract features from it. As shown in figure \ref{fig:convolutional_neural_network},
+    the input data is processed by a series of \ti{convolutional layers} and \ti{pooling layers},
+    and then the output of the last \ti{pooling layer} is flattened and fed to a series
+    of \ti{fully connected layers} and a \ti{activation function}\cite{goodfellow2016deep, intelligence2021modern}.
+    \begin{figure}[htbp]
+      \centering
+      \includegraphics[width=\linewidth]{theorical_foundations/cnn.png}
+      \caption{Convolutional Neural Network architecture}
+      \label{fig:convolutional_neural_network}
+    \end{figure}
+    CNN are useful for image classification, object detection, semantic segmentation,
+    and many other computer vision tasks\cite{goodfellow2016deep, intelligence2021modern}.
+    In the following sections, the fundamentals of the layers that compose a CNN are
+    explained.
 
-      \Blindtext[1]
+    \subsubsection{Convolution operation}
+
+      \ti{Convolution operation} is the core operation of a CNN, extracts features
+      from the input data by applying a \ti{kernel} to it\cite{goodfellow2016deep, intelligence2021modern}.
+      Features like edges, corners, and blobs are extracted from the input data
+      by applying a \ti{kernel}, being capable of extracting more complex
+      features by stacking multiple \ti{convolutional layers}\cite{goodfellow2016deep, intelligence2021modern}.
+      Convolution operation takes two arguments, the first one is often referred as the
+      \ti{input} and the second one as the \ti{kernel} or \ti{filter} and outputs
+      a \ti{feature map}.
+      Convolution operation is defined as follows\cite{goodfellow2016deep}:
+      \begin{equation}
+        \label{eq:convolution_operation}
+        S(i, j) = (I * K)(i, j) = \sum_{m} \sum_{n} I(m, n) K(i - m, j - n)
+      \end{equation}
+      where $S$ is the \ti{feature map}, $I$ is the \ti{input}, $K$ is the \ti{kernel},
+      $i$ and $j$ are the indexes of the \ti{feature map}, and $m$ and $n$ are the
+      indexes of the \ti{kernel}.
+
+      The \ti{kernel} is a matrix of weights that is applied to the \ti{input}
+      using a sliding window, as shown in figure \ref{fig:convolution_operation}.
+      \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\linewidth]{theorical_foundations/convolution_operation.png}
+        \caption{Convolution operation}
+        \label{fig:convolution_operation}
+      \end{figure}
+      Multiply the \ti{kernel} by the \ti{input} using the sliding window and
+      sum the results, the new value updates the \ti{feature map} and the sliding
+      window moves to the next position. The \ti{kernel} is applied to the whole
+      \ti{input} and the result is the \ti{feature map}\cite{goodfellow2016deep, intelligence2021modern}.
+      As we can use multiple \ti{kernels} in a convolutional layer, the output
+      of a convolutional layer is a \ti{feature map} for each \ti{kernel} used.
 
     \subsubsection{Pooling}
 
-      \Blindtext[1]
+      \ti{Pooling} is an operation that reduces the size of the \ti{feature map},
+      extracting robust and invariant features from it\cite{goodfellow2016deep, intelligence2021modern}.
+      Its applied to each \ti{feature map} independently, reducing the size of the
+      \ti{feature map} by applying a function to a sliding window
+      of the \ti{feature map}, as shown in figure \ref{fig:pooling_operation}.
+      \begin{figure}[htbp]
+        \centering
+        \begin{subfigure}[b]{0.45\linewidth}
+          \centering
+          \includegraphics[width=\linewidth]{theorical_foundations/max_pooling.png}
+          \caption{Max pooling}
+          \label{fig:max_pooling}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.45\linewidth}
+          \centering
+          \includegraphics[width=\linewidth]{theorical_foundations/avg_pooling.png}
+          \caption{Average pooling}
+          \label{fig:avg_pooling}
+        \end{subfigure}
+        \caption{Pooling operation}
+        \label{fig:pooling_operation}
+      \end{figure}
+
+      The most common \ti{pooling} operations are \ti{max pooling} and \ti{average pooling},
+      where \ti{max pooling} outputs the maximum value of the sliding window and
+      \ti{average pooling} outputs the average value of the sliding window\cite{goodfellow2016deep, intelligence2021modern}.
+      These pooling functions provides various strategies to downsample feature maps,
+      extract invariant features, and reduce spatial dimensions in order to reduce
+      the number of parameters and computation in CNN architecture.
 
     \subsubsection{Fully Connected Layers}
 
-      \Blindtext[1]
-
-    \subsubsection{Skip Connections}
-
-      \Blindtext[1]
+      \ti{Fully connected layers} are used to classify the input data, they are
+      composed of a series of neurons that are connected to all the neurons of
+      the previous layer, as shown in figure \ref{fig:fully_connected_layer}.
+      \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=\linewidth]{theorical_foundations/fully_connected.png}
+        \caption{Fully connected layer}
+        \label{fig:fully_connected_layer}
+      \end{figure}
+      Typically, the last layer of a CNN is a \ti{fully connected layer} that
+      performs the classification of the input data, enables the network to
+      learn non-linear combinations of features extracted by the previous layers,
+      and outputs a vector of probabilities that represents the probability of
+      the input data to belong to each class\cite{goodfellow2016deep, intelligence2021modern}.
 
     \subsubsection{Activation Functions}
 
-      \Blindtext[1]
+      \ti{Activation functions} are used to introduce non-linearity to the network,
+      they are applied to the output of each neuron of a CNN\cite{goodfellow2016deep, intelligence2021modern}.
+      The most common \ti{activation functions} are \ti{sigmoid}, \ti{tanh}, and
+      \ti{ReLU}, as shown in figure \ref{fig:activation_functions}.
+      \begin{figure}[htbp]
+        \centering
+        \begin{subfigure}[b]{0.30\linewidth}
+          \centering
+          \includegraphics[width=\linewidth]{theorical_foundations/sigmoid.png}
+          \caption{Sigmoid}
+          \label{fig:sigmoid}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.30\linewidth}
+          \centering
+          \includegraphics[width=\linewidth]{theorical_foundations/tanh.png}
+          \caption{Tanh}
+          \label{fig:tanh}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.30\linewidth}
+          \centering
+          \includegraphics[width=\linewidth]{theorical_foundations/relu.png}
+          \caption{ReLU}
+          \label{fig:relu}
+        \end{subfigure}
+        \caption{Activation functions}
+        \label{fig:activation_functions}
+      \end{figure}
+
+      \tb{Sigmoid activation function} is defined as follows\cite{goodfellow2016deep}:
+      \begin{equation}
+        \label{eq:sigmoid_activation_function}
+        \sigma(x) = \frac{1}{1 + e^{-x}}
+      \end{equation}
+      where $x$ is the input of the neuron. The output of the \ti{sigmoid activation
+      function} is a value between 0 and 1, which is useful for binary classification
+      problems\cite{goodfellow2016deep, intelligence2021modern}.
+
+      \tb{Tanh activation function} is defined as follows\cite{goodfellow2016deep}:
+      \begin{equation}
+        \label{eq:tanh_activation_function}
+        \tanh(x) = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
+      \end{equation}
+      where $x$ is the input of the neuron. The output of the \ti{tanh activation
+      function} is a value between -1 and 1, which is useful for classification
+      problems\cite{goodfellow2016deep, intelligence2021modern}.
+
+      \tb{ReLU activation function} is defined as follows\cite{goodfellow2016deep}:
+      \begin{equation}
+        \label{eq:relu_activation_function}
+        \text{ReLU}(x) = \max(0, x)
+      \end{equation}
+      where $x$ is the input of the neuron. The output of the \ti{ReLU activation
+      function} is a value between 0 and $\infty$, which is useful for classification
+      problems\cite{goodfellow2016deep, intelligence2021modern}.
+
+      \ti{Sigmoid} and \ti{tanh} are used in the past, but \ti{ReLU} is the most
+      common \ti{activation function} used nowadays\cite{goodfellow2016deep, intelligence2021modern}.
   
   \subsection{Fundamentals of Transformers}
 
-    \Blindtext[1]
-
-    \subsubsection{Backbone}
-
-      \Blindtext[1]
+    \ti{Transformers} are a groundbreaking architecture that has been used in
+    many NLP tasks\cite{goodfellow2016deep}. They are based on the \ti{attention}
+    mechanism, which is a mechanism that allows the network to focus on the
+    relevant parts of the input data\cite{goodfellow2016deep, vaswani2017attention}.
+    Transformers are composed of an \ti{encoder} and a \ti{decoder}, as shown
+    in figure \ref{fig:transformer_architecture}.
+    \begin{figure}[htbp]
+      \centering
+      \includegraphics[width=\linewidth]{theorical_foundations/transformer_architecture.png}
+      \caption{Transformer architecture\cite{vaswani2017attention}}
+      \label{fig:transformer_architecture}
+    \end{figure}
 
     \subsubsection{Encoder}
 
-      \Blindtext[1]
+      \ti{Encoder layer} is composed of two sub-layers: \ti{multi-head attention} and
+      \ti{feed-forward network} as seen in \ref{fig:encoder_layer}.
+      \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.50\linewidth]{theorical_foundations/encoder_layer.png}
+        \caption{Encoder layer\cite{vaswani2017attention}}
+        \label{fig:encoder_layer}
+      \end{figure}
+      Encoder extracts meaningful features from the input data, tipically
+      a sequence of token representations and produces a set of feature vectors
+      that capture the semantics and dependencies of the input data\cite{vaswani2017attention}.
+      Self-attention mechanism enables the network to attend to the relevant
+      parts of the input data, and weight the importance of each token in the
+      sequence\cite{vaswani2017attention}. Encoder is composed of a stack of
+      \ti{encoder layers} described above, also using residual connections and
+      layer normalization as shown in figure \ref{fig:encoder_layer}.
 
     \subsubsection{Decoder}
 
-      \Blindtext[1]
+      \ti{Decoder layer} is composed of three sub-layers: \ti{masked multi-head attention},
+      \ti{multi-head attention}, and \ti{feed-forward network} as seen in \ref{fig:decoder_layer}.
+      \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.50\linewidth]{theorical_foundations/decoder_layer.png}
+        \caption{Decoder layer\cite{vaswani2017attention}}
+        \label{fig:decoder_layer}
+      \end{figure}
+      Decoder takes the output of the encoder and produces a sequence of token
+      representations that are used to generate the output data\cite{vaswani2017attention}.
+      \ti{Masked multi-head attention} is used to prevent the network from attending
+      to the future tokens in the sequence\cite{vaswani2017attention}.
+      \ti{Multi-head attention} is used to attend to the relevant parts of the
+      input data\cite{vaswani2017attention}.
+      \ti{Feed-forward network} is used to learn non-linear combinations of features
+      extracted by the \ti{multi-head attention} sub-layer\cite{vaswani2017attention}.
+      Each \ti{Decoder} is composed of a stack of \ti{decoder layers} described
+      above, also using residual connections and layer normalization as shown in
+      figure \ref{fig:decoder_layer}.
+
+    Tipically, both \ti{encoder} and \ti{decoder} are composed of 6 layers\cite{vaswani2017attention}.
+    Encoder processes the input data and extracts meaningful features from it and decoder
+    generates the output data based on the features extracted by the encoder\cite{vaswani2017attention}.

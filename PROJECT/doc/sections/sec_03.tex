@@ -1,15 +1,59 @@
 \section{Related Work}
 
-  \subsection{Handcrafted}
+  \subsection{Early Approaches}
 
-    \subsubsection{Thresholding}
+    \subsubsection{Traditional computer vision techniques}
 
-      \Blindtext[1]
+      Traditional computer vision techniques are based on hand-crafted features
+      and shallow machine learning algorithms. They are not able to learn complex
+      patterns and require a lot of human effort to design features. Therefore,
+      they are not suitable for semantic segmentation. Some approaches include
+      \ti{Edge detection}, \ti{Region growing}, \ti{Clustering}\cite{intelligence2021modern}.
 
-    \subsubsection{Region-based}
+    \subsubsection{Handcrafted features}
 
-      \Blindtext[1]
+      SIFT and HOG are handcrafted features that are used for object detection
+      and semantic segmentation. Although, they are not able to learn complex
+      patterns and require a lot of human effort to design features\cite{goodfellow2016deep}.
 
-    \subsubsection{Clustering}
+  \subsection{Deep learning approaches}
 
-      \Blindtext[1]
+    \subsubsection{Convolution factorization}
+
+      \ti{Convolution factorization} is a technique that decomposes a standard
+      convolution into a set of smaller convolutions. It is used to reduce the
+      number of parameters and operations while maintaining the accuracy of the
+      network\cite{mehta2018espnet}. Convolution factorization has shown being
+      able to reduce computational complexity(i.e. Inception, ResNext, MobileNet).
+
+    \subsubsection{Fully Convolutional Network\cite{long2015fully}}
+
+      \ti{Fully Convolutional Network} (FCN) is a neural network architecture
+      for semantic segmentation. It is based on a \ti{convolutional neural network}
+      (CNN) with a modified architecture. The main idea is to replace the fully
+      connected layers with convolutional layers. As it uses encoder-decoder architecture,
+      encoder to extract features and to recover the spatial information through
+      convolutional and pooling layers, and decoder uses transposed convolutional
+      layers to upsample the feature maps to the original image size\cite{long2015fully}.
+
+      However, FCN is computationally expensive and requires a lot of memory. As
+      autonomous vehicles require real-time semantic segmentation and has limited
+      computational resources, FCN is not suitable for this task.
+
+    \subsubsection{Encoder-Decoder architecture: SegNet\cite{badrinarayanan2017segnet}}
+
+      \ti{SegNet} is a neural network architecture for semantic segmentation. It
+      is based on a \ti{convolutional neural network} (CNN) with a modified architecture.
+      The main idea is to use a \ti{pooling indices} obtained from the max-pooling
+      layer to perform up-sampling. This allows to reduce the number of parameters
+      and operations while maintaining the accuracy of the network\cite{badrinarayanan2017segnet}.
+
+      Even so, SegNet is computationally expensive and requires a lot of memory. As
+      autonomous vehicles require real-time semantic segmentation and has limited
+      computational resources, SegNet is not suitable for this task.
+
+    \subsubsection{Pyramid Pooling Modules: PSPNet}
+
+      \ti{PSPNet} uses \ti{Pyramid Pooling Modules} to capture the context in different
+      regions of the image, with multiscale pooling layers to capture contextual
+      information at different scales.
