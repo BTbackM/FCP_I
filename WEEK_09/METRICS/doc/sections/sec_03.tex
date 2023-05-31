@@ -1,0 +1,15 @@
+\section{Paper Evaluation Metrics}
+
+  ENet\cite{paszke2016enet} uses the IoU metric[\ref{eq:iou}], mIoU metric[\ref{eq:miou}]
+  and iIoU metric[\ref{eq:iiou}] to evaluate the performance of the model using the CamVid and Cityscapes
+  datasets\cite{cordts2016cityscapes} against SegNet\cite{badrinarayanan2017segnet}.
+  
+  ENet uses both level of granularity, \ti{class} and \ti{category}, to evaluate the performance
+  of the model. The $IoU_{class}$ and $IoU_{category}$ by using the predicted mask for specific class/category and the
+  ground truth mask for same class/category as before in both operations: $A \cap B$ and $A \cup B$.
+  The mIoU uses the class/category IoU to calculate the mean IoU for each class/category.
+  Also uses $iIoU_{class}$ and $iIoU_{category}$ to evaluate the performance of the 
+  model at instance level.
+
+  This gives a more detailed evaluation of the model's performance, at more
+  granular level, than just using the mIoU metric.

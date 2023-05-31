@@ -1,0 +1,141 @@
+\ProvidesPackage{commands}
+
+% Color variables
+\definecolor{background}{RGB}{225, 250, 175}
+\definecolor{black}{RGB}{0, 0, 0}
+\definecolor{blue}{RGB}{0, 25, 100}
+\definecolor{gray}{RGB}{125, 125, 125}
+\definecolor{green}{RGB}{0, 100, 0}
+\definecolor{orange}{RGB}{200, 125, 0}
+\definecolor{purple}{RGB}{175, 25, 125}
+\definecolor{red}{RGB}{200, 0, 0}
+\definecolor{skyblue}{RGB}{25, 175, 150}
+\definecolor{yellow}{RGB}{200, 200, 0}
+\definecolor{white}{RGB}{255, 255, 255}
+
+% PDF colors
+\definecolor{pdfyellow}{RGB}{255, 255, 100}
+\definecolor{pdfgreen}{RGB}{144, 238, 144}
+\definecolor{pdforange}{RGB}{250, 175, 100}
+\definecolor{pdfblue}{RGB}{176, 224, 230}
+\definecolor{pdfpurple}{RGB}{200, 150, 200}
+
+% Cite color
+\hypersetup{citecolor=blue}
+
+% Basic font styles
+\newcommand{\tb}[1]{\textbf{{#1}}}
+\newcommand{\ti}[1]{\textit{{#1}}}
+\newcommand{\tu}[1]{\setulcolor{black}\ul{#1}}
+\newcommand{\tub}[1]{\textbf{\setulcolor{black}\ul{#1}}}
+
+% Styled font styles
+\newcommand{\ublack}[1]{\textbf{\color{black}\setulcolor{black}\ul{#1}}}
+\newcommand{\ublue}[1]{\textbf{\color{blue}\setulcolor{black}\ul{#1}}}
+\newcommand{\ugray}[1]{\textbf{\color{gray}\setulcolor{black}\ul{#1}}}
+\newcommand{\ugreen}[1]{\textbf{\color{green}\setulcolor{black}\ul{#1}}}
+\newcommand{\uorange}[1]{\textbf{\color{orange}\setulcolor{black}\ul{#1}}}
+\newcommand{\upurple}[1]{\textbf{\color{purple}\setulcolor{black}\ul{#1}}}
+\newcommand{\ured}[1]{\textbf{\color{red}\setulcolor{black}\ul{#1}}}
+\newcommand{\uskyblue}[1]{\textbf{\color{skyblue}\setulcolor{black}\ul{#1}}}
+\newcommand{\uyellow}[1]{\textbf{\color{yellow}\setulcolor{black}\ul{#1}}}
+\newcommand{\uwhite}[1]{\textbf{\color{white}\setulcolor{black}\ul{#1}}}
+\newcommand{\bblack}[1]{\textbf{\color{black}{#1}}}
+\newcommand{\bblue}[1]{\textbf{\color{blue}{#1}}}
+\newcommand{\bgray}[1]{\textbf{\color{gray}{#1}}}
+\newcommand{\bgreen}[1]{\textbf{\color{green}{#1}}}
+\newcommand{\borange}[1]{\textbf{\color{orange}{#1}}}
+\newcommand{\bpurple}[1]{\textbf{\color{purple}{#1}}}
+\newcommand{\bred}[1]{\textbf{\color{red}{#1}}}
+\newcommand{\bskyblue}[1]{\textbf{\color{skyblue}{#1}}}
+\newcommand{\byellow}[1]{\textbf{\color{yellow}{#1}}}
+\newcommand{\bwhite}[1]{\textbf{\color{white}{#1}}}
+\newcommand{\black}[1]{{\color{black}{#1}}}
+\newcommand{\blue}[1]{{\color{blue}{#1}}}
+\newcommand{\gray}[1]{{\color{gray}{#1}}}
+\newcommand{\green}[1]{{\color{green}{#1}}}
+\newcommand{\orange}[1]{{\color{orange}{#1}}}
+\newcommand{\purple}[1]{{\color{purple}{#1}}}
+\newcommand{\red}[1]{{\color{red}{#1}}}
+\newcommand{\skyblue}[1]{{\color{skyblue}{#1}}}
+\newcommand{\yellow}[1]{{\color{yellow}{#1}}}
+\newcommand{\white}[1]{{\color{white}{#1}}}
+
+% Geometry template
+\geometry{
+  voffset = 0.25cm,
+	top = 3cm,
+	bottom = 2cm,
+	left = 2cm,
+	right = 2cm,
+	headheight = 2.5cm,
+	headsep = 1cm
+}
+
+% Default path for images
+\graphicspath{{img/}}
+
+\newcommand\MYhyperrefoptions{
+  bookmarks=true, bookmarksnumbered=true,
+  pdfpagemode={UseOutlines}, plainpages=false,
+  pdfpagelabels=true, colorlinks=true,
+  linkcolor={black}, citecolor={black},
+  urlcolor={black}
+}
+% Header declaration
+\markboth{Universidad de Ingenieria y Tecnologia, 2023}%
+{}
+
+% Algorithmic package options
+\algrenewcommand\algorithmicindent{1.0em}
+\algrenewcommand\alglinenumber[1]{\textbf{#1}}
+
+% Tikz package options
+\usetikzlibrary{trees, positioning, shadows, shapes, arrows}
+
+% Define styles for bags and leafs
+\tikzstyle{bag} = [text width=4em, text centered]
+\tikzstyle{end} = [circle, minimum width=3pt, fill, inner sep=0pt]
+
+% Default style for code listing
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{white},
+  commentstyle=\color{gray},
+  keywordstyle=\bfseries{\color{black}},
+  numberstyle=\numberstyle,
+  stringstyle=\bfseries{\color{black}},
+  basicstyle=\normalfont\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=none,
+  numbersep=0pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  columns=fullflexible,
+  xleftmargin=0pt
+}
+
+% Default style for code listing numbering
+\lstset{style=mystyle}
+\newcommand\numberstyle[1]{%
+  \footnotesize
+  \color{gray}%
+  \normalfont
+  \ifnum#1<10 0\fi#1 |%
+}
+
+\lstset{style=mystyle}
+\usemintedstyle{gruvbox-light}
+
+% Subsubsection bold font
+\makeatletter
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\bfseries}% <-- Bold font formatting
+}
+\makeatother

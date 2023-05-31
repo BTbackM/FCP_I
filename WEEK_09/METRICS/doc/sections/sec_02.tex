@@ -1,0 +1,107 @@
+\section{Evaluation Metrics}
+
+  \subsection{Pixel Accuracy}
+
+    \ti{Pixel Accuracy (PA)} is the simplest metric used to evaluate the performance
+    of a semantic segmentation model. It is calculated by cumputing the ratio
+    between the number of correctly classified pixels and the total number of
+    pixels in the image\cite{long2015fully}. The pixel accuracy is a value between
+    $0$ and $1$, with $1$ being the best possible score.
+    \begin{equation}
+      \label{eq:pixel_accuracy}
+      PA = \frac{TP_i + TN_i}{TP_i + TN_i + FP_i + FN_i}
+    \end{equation}
+    where $TP_i$ is the number of true positives (correct \ti{foreground pixels}),
+    $TN_i$ is the number of true negatives (correct \ti{background pixels})
+    meaning correctly classified pixels, $FP_i$ is the number of false positives
+    (incorrect \ti{foreground pixels}) and $FN_i$ is the number of false negatives
+    (incorrect \ti{background pixels}) meaning incorrectly classified pixels.
+
+    Although the pixel accuracy is a simple metric, it is not a good metric to
+    evaluate the performance of a semantic segmentation model. This is because
+    the pixel accuracy does not take into account the \ti{class imbalance problem},
+    presented in semantic segmentation datasets and real world scenarios.
+    
+  \subsection{Mean Pixel Accuracy}
+
+    \ti{Mean Pixel Accuracy (mPA)} calculate the pixel accuracy(\ti{PA}) for each
+    semantic category and then averages the results\cite{long2015fully}. The mPA is a value between $0$ and $1$,
+    with $1$ being the best possible score.
+    \begin{equation}
+      \label{eq:mean_pixel_accuracy}
+      mPA = \frac{1}{n} \sum_{i=1}^{n} PA_i
+    \end{equation}
+    using the same variables as in equation \ref{eq:pixel_accuracy} and $n$ is the
+    number of semantic categories. However, the mPA still does not take into account
+    the \ti{class imbalance problem}.
+
+  \subsection{Intersection over Union}
+    
+    \ti{Intersection over Union (IoU)} or \ti{Jaccard index} is calculated by dividing
+    the intersection of the predicted segmentation and the ground truth segmentation by the union
+    of the predicted segmentation and the ground truth segmentation\cite{long2015fully, paszke2016enet}.
+    The IoU is a value between $0$ and $1$, with $1$ being the best possible score.
+    \begin{equation}
+      \label{eq:iou}
+      IoU = \frac{{|A \cap B|}}{{|A \cup B|}} = \frac{TP_i}{TP_i + FP_i + FN_i}
+    \end{equation}
+    where $A$ is the predicted segmentation, $B$ is the ground truth segmentation,
+    $|A \cap B|$ represents the \ti{overlapping area} between $A$ and $B$ meaning
+    correctly classified pixels as foreground. While $|A \cup B|$ represents the
+    \ti{union area} between $A$ and $B$ meaning all pixels in foreground.
+
+    It is a useful metric to evaluate the performance of a semantic segmentation
+    when the \ti{class imbalance problem} is present, take into account the
+    presence of small objects and penalize false positives. However, the IoU
+    is still not a good metric alone to measure the performance of instance
+    segmentation models, because it does not evaluate the background accuracy.
+
+  \subsection{Mean Intersection over Union}
+
+    \ti{Mean Intersection over Union (mIoU)} calculate the IoU for each semantic
+    category and then averages the results\cite{long2015fully, paszke2016enet}.
+    The mIoU is a value between $0$ and $1$, with $1$ being the best possible score.
+    \begin{equation}
+      \label{eq:miou}
+      mIoU = \frac{1}{n} \sum_{i=1}^{n} IoU_i
+    \end{equation}
+    using the same variables as in equation \ref{eq:iou} and $n$ is the number of
+    semantic categories. The mIoU is a good metric to evaluate the performance of
+    a semantic segmentation model, but it still does not evaluate the background
+    accuracy.
+
+  \subsection{Instance-level Intersection over Union}
+
+    \ti{Instance-level Intersection over Union (iIoU)} is calculated at the level
+    of each instance, by dividing the intersection of the predicted segmentation
+    and the ground truth segmentation by the union of the predicted segmentation
+    and the ground truth segmentation\cite{paszke2016enet, intelligence2021modern}.
+    The iIoU is a value between $0$ and $1$, with $1$ being the best possible score.
+    \begin{equation}
+      \label{eq:iiou}
+      iIoU = \frac{{|A \cap B|}}{{|A \cup B|}} = \frac{iTP_i}{iTP_i + FP_i + iFN_i}
+    \end{equation}
+    where $A$ is the predicted segmentation, $B$ is the ground truth segmentation,
+    also using $iTP_i$ and $iFN_i$ to represent the number of true positives and
+    false negatives at the level of each instance. They are computed by weighting
+    the contribution of each pixel by the ratio class average instance size to
+    the size of the instance\cite{paszke2016enet}.
+
+    This metric is a good metric to evaluate the performance of instance segmentation
+    models, when large objects are present in the dataset.
+
+  \subsection{Frequency Weighted Intersection over Union}
+
+    \ti{Frequency Weighted Intersection over Union (FWIoU)} extends the mIoU metric
+    by taking into account the \ti{class imbalance problem} by assigning a weight
+    to each semantic category based on the number of pixels in the ground truth. This
+    means that the FWIoU penalizes more the incorrect classification of pixels in
+    semantic categories with more pixels in the ground truth, providing a more balanced
+    evaluation\cite{lin2017refinenet,long2015fully}. The FWIoU is a value between $0$
+    and $1$, with $1$ being the best possible score.
+    \begin{equation}
+      \label{eq:fwiou}
+      FWIoU = \frac{1}{\sum_{i=1}^{n} |B_i|} \sum_{i=1}^{n} |B_i| IoU_i
+    \end{equation}
+    where $|B_i|$ is the number of pixels in the ground truth for the semantic
+    category $i$ (\ti{frequency}) and $n$ is the number of semantic categories.
