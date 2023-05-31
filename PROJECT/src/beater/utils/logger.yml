@@ -1,0 +1,18 @@
+version: 1
+formatters:
+  customized:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+handlers:
+  file:
+    class: logging.handlers.RotatingFileHandler
+    formatter: customized
+    filename: logger.log
+    level: DEBUG
+loggers:
+  BT:
+    level: DEBUG
+    handlers: [file]
+    propagate: no
+BT:
+  level: DEBUG
+  handlers: [logger]
