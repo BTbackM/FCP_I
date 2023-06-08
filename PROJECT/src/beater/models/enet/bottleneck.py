@@ -41,7 +41,7 @@ class Regular(Bottleneck):
 
         # Ext branch: main connection
         # 1x1 projection convolution
-        self.conv_proj = nn.Sequential(
+        self.ext_conv_proj = nn.Sequential(
             nn.Conv2d(channels,
                       internal_channels,
                       kernel_size = 1,
@@ -50,7 +50,7 @@ class Regular(Bottleneck):
             self.activation,)
 
         # main conv
-        self.conv_main = nn.Sequential(
+        self.ext_conv_main = nn.Sequential(
             nn.Conv2d(internal_channels,
                       internal_channels,
                       kernel_size = kernel_size,
@@ -61,7 +61,7 @@ class Regular(Bottleneck):
             self.activation,)
 
         # 1x1 expansion convolution
-        self.conv_exp = nn.Sequential(
+        self.ext_conv_exp = nn.Sequential(
             nn.Conv2d(internal_channels,
                       channels,
                       kernel_size = 1,
@@ -70,7 +70,7 @@ class Regular(Bottleneck):
             self.activation,)
 
         # Regularizer
-        self.dropout = nn.Dropout2d(p = dropout_prob)
+        self.ext_dropout = nn.Dropout2d(p = dropout_prob)
 
     def forward(self, x):
         # Main branch: shortcut connection
@@ -78,13 +78,13 @@ class Regular(Bottleneck):
 
         # Ext branch: main connection
         # 1x1 projection convolution
-        ext = self.conv_proj(x)
+        ext = self.ext_conv_proj(x)
         # main conv
-        ext = self.conv_main(ext)
+        ext = self.ext_conv_main(ext)
         # 1x1 expansion convolution
-        ext = self.conv_exp(ext)
+        ext = self.ext_conv_exp(ext)
         # Regularizer
-        ext = self.dropout(ext)
+        ext = self.ext_dropout(ext)
 
         # Merge
         out = main + ext
@@ -120,7 +120,7 @@ class Dilated(Bottleneck):
 
         # Ext branch: main connection
         # 1x1 projection convolution
-        self.conv_proj = nn.Sequential(
+        self.ext_conv_proj = nn.Sequential(
             nn.Conv2d(channels,
                       internal_channels,
                       kernel_size = 1,
@@ -129,7 +129,7 @@ class Dilated(Bottleneck):
             self.activation,)
 
         # main conv
-        self.conv_main = nn.Sequential(
+        self.ext_conv_main = nn.Sequential(
             nn.Conv2d(internal_channels,
                       internal_channels,
                       kernel_size = kernel_size,
@@ -140,7 +140,7 @@ class Dilated(Bottleneck):
             self.activation,)
 
         # 1x1 expansion convolution
-        self.conv_exp = nn.Sequential(
+        self.ext_conv_exp = nn.Sequential(
             nn.Conv2d(internal_channels,
                       channels,
                       kernel_size = 1,
@@ -149,7 +149,7 @@ class Dilated(Bottleneck):
             self.activation,)
 
         # Regularizer
-        self.dropout = nn.Dropout2d(p = dropout_prob)
+        self.ext_dropout = nn.Dropout2d(p = dropout_prob)
 
     def forward(self, x):
         # Main branch: shortcut connection
@@ -157,13 +157,13 @@ class Dilated(Bottleneck):
 
         # Ext branch: main connection
         # 1x1 projection convolution
-        ext = self.conv_proj(x)
+        ext = self.ext_conv_proj(x)
         # main conv
-        ext = self.conv_main(ext)
+        ext = self.ext_conv_main(ext)
         # 1x1 expansion convolution
-        ext = self.conv_exp(ext)
+        ext = self.ext_conv_exp(ext)
         # Regularizer
-        ext = self.dropout(ext)
+        ext = self.ext_dropout(ext)
 
         # Merge
         out = main + ext
@@ -198,7 +198,7 @@ class Asymmetric(Bottleneck):
 
         # Ext branch: main connection
         # 1x1 projection convolution
-        self.conv_proj = nn.Sequential(
+        self.ext_conv_proj = nn.Sequential(
             nn.Conv2d(channels,
                       internal_channels,
                       kernel_size = 1,
@@ -210,7 +210,7 @@ class Asymmetric(Bottleneck):
         # divide into two convolutions:
         # 5x1 asymmetric convolution
         # 1x5 asymmetric convolution
-        self.conv_main = nn.Sequential(
+        self.ext_conv_main = nn.Sequential(
             nn.Conv2d(internal_channels,
                       internal_channels,
                       kernel_size = (kernel_size, 1),
@@ -229,7 +229,7 @@ class Asymmetric(Bottleneck):
             self.activation,)
 
         # 1x1 expansion convolution
-        self.conv_exp = nn.Sequential(
+        self.ext_conv_exp = nn.Sequential(
             nn.Conv2d(internal_channels,
                       channels,
                       kernel_size = 1,
@@ -238,7 +238,7 @@ class Asymmetric(Bottleneck):
             self.activation,)
 
         # Regularizer
-        self.dropout = nn.Dropout2d(p = dropout_prob)
+        self.ext_dropout = nn.Dropout2d(p = dropout_prob)
 
     def forward(self, x):
         # Main branch: shortcut connection
@@ -246,13 +246,13 @@ class Asymmetric(Bottleneck):
 
         # Ext branch: main connection
         # 1x1 projection convolution
-        ext = self.conv_proj(x)
+        ext = self.ext_conv_proj(x)
         # main conv: asymmetric convolution
-        ext = self.conv_main(ext)
+        ext = self.ext_conv_main(ext)
         # 1x1 expansion convolution
-        ext = self.conv_exp(ext)
+        ext = self.ext_conv_exp(ext)
         # Regularizer
-        ext = self.dropout(ext)
+        ext = self.ext_dropout(ext)
 
         # Merge
         out = main + ext
@@ -287,13 +287,13 @@ class Downsampling(Bottleneck):
 
         # Main branch: shortcut connection
         # Max pooling
-        self.max_pool = nn.MaxPool2d(kernel_size = 2,
+        self.main_max_pool = nn.MaxPool2d(kernel_size = 2,
                                      stride = 2,
                                      return_indices = self.return_indices,)
 
         # Ext branch: main connection
         # 2x2 projection convolution with stride 2
-        self.conv_proj = nn.Sequential(
+        self.ext_conv_proj = nn.Sequential(
             nn.Conv2d(in_channels,
                       internal_channels,
                       kernel_size = 2,
@@ -302,7 +302,7 @@ class Downsampling(Bottleneck):
             self.activation,)
 
         # main conv
-        self.conv_main = nn.Sequential(
+        self.ext_conv_main = nn.Sequential(
             nn.Conv2d(internal_channels,
                       internal_channels,
                       kernel_size = 3,
@@ -312,7 +312,7 @@ class Downsampling(Bottleneck):
             self.activation,)
 
         # 1x1 expansion convolution
-        self.conv_exp = nn.Sequential(
+        self.ext_conv_exp = nn.Sequential(
             nn.Conv2d(internal_channels,
                       out_channels,
                       kernel_size = 1,
@@ -321,21 +321,21 @@ class Downsampling(Bottleneck):
             self.activation,)
 
         # Regularizer
-        self.dropout = nn.Dropout2d(p = dropout_prob)
+        self.ext_dropout = nn.Dropout2d(p = dropout_prob)
 
     def forward(self, x):
         # Main branch: shortcut connection
-        main, max_indices = self.max_pool(x)
+        main, max_indices = self.main_max_pool(x)
 
         # Ext branch: main connection
         # 2x2 projection convolution with stride 2
-        ext = self.conv_proj(x)
+        ext = self.ext_conv_proj(x)
         # main conv
-        ext = self.conv_main(ext)
+        ext = self.ext_conv_main(ext)
         # 1x1 expansion convolution
-        ext = self.conv_exp(ext)
+        ext = self.ext_conv_exp(ext)
         # Regularizer
-        ext = self.dropout(ext)
+        ext = self.ext_dropout(ext)
 
         # Main branch channel padding
         n, ch_ext, h_ext, w_ext = ext.size()
@@ -357,3 +357,88 @@ class Downsampling(Bottleneck):
             return out, max_indices
         else:
             return out
+
+class Upsampling(Bottleneck):
+    """
+    Based on paper: https://arxiv.org/pdf/1606.02147.pdf
+    Upsampling bottleneck module of the model ENet
+    """
+    def __init__(self,
+                 in_channels,
+                 out_channels,
+                 internal_ratio: int = 4,
+                 dropout_prob: float = 0.1,) -> None:
+        super(Upsampling, self).__init__()
+
+        if internal_ratio <= 1 and internal_ratio > in_channels:
+            raise RuntimeError("Internal ratio must be a positive integer.")
+
+        internal_channels = in_channels // internal_ratio
+
+        # Using ReLU activation by default
+        self.activation = nn.ReLU()
+
+        # Main branch: shortcut connection
+        # Convolutional
+        self.main_conv = nn.Sequential(
+            nn.Conv2d(in_channels,
+                      out_channels,
+                      kernel_size = 1,),
+            nn.BatchNorm2d(out_channels),)
+
+        self.main_max_unpool = nn.MaxUnpool2d(kernel_size = 2,)
+
+        # Ext branch: main connection
+        # 1x1 projection convolution
+        self.ext_conv_proj = nn.Sequential(
+            nn.Conv2d(in_channels,
+                      internal_channels,
+                      kernel_size = 1,),
+            nn.BatchNorm2d(internal_channels),
+            self.activation,)
+
+        # main conv: Transposed convolution
+        self.ext_trans = nn.ConvTranspose2d(internal_channels,
+                                                internal_channels,
+                                                kernel_size = 2,
+                                                stride = 2,)
+        self.ext_trans_bnorm = nn.BatchNorm2d(internal_channels)
+        self.ext_trans_activation = self.activation
+
+        # 1x1 expansion convolution
+        self.ext_conv_exp = nn.Sequential(
+            nn.Conv2d(internal_channels,
+                      out_channels,
+                      kernel_size = 1,),
+            nn.BatchNorm2d(out_channels),)
+
+        # Regularizer
+        self.ext_dropout = nn.Dropout2d(p = dropout_prob)
+
+    def forward(self, x, max_indices, output_size):
+        # Main branch: shortcut connection
+        main = self.main_conv(x)
+        main = self.main_max_unpool(main,
+                                    max_indices,
+                                    output_size = output_size)
+
+        # Ext branch: main connection
+        # 1x1 projection convolution
+        ext = self.ext_conv_proj(x)
+        # main conv: Transposed convolution
+        ext = self.ext_trans(ext,
+                             output_size = output_size)
+        ext = self.ext_trans_bnorm(ext)
+        ext = self.ext_trans_activation(ext)
+        # 1x1 expansion convolution
+        ext = self.ext_conv_exp(ext)
+        # Regularizer
+        ext = self.ext_dropout(ext)
+
+        # Merge
+        out = main + ext
+
+        # Activation
+        out = self.activation(out)
+
+        return out
