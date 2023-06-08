@@ -8,21 +8,20 @@ class InitialBlock(nn.Module):
     """
     def __init__(self,
                  in_channels,
-                 out_channels,
-                 ) -> None:
+                 out_channels,) -> None:
         super(InitialBlock, self).__init__()
 
         # Main branch (left side): performs regular convolution
         self.main_branch = nn.Conv2d(in_channels = in_channels,
-                                  out_channels = out_channels - 3,
-                                  kernel_size = 3,
-                                  stride = 2,
-                                  padding = 1,)
+                                     out_channels = out_channels - 3,
+                                     kernel_size = 3,
+                                     stride = 2,
+                                     padding = 1,)
 
         # Ext branch (right side): performs max pooling
         self.ext_branch = nn.MaxPool2d(kernel_size = 3,
-                                    stride = 2,
-                                    padding = 1,)
+                                       stride = 2,
+                                       padding = 1,)
 
         # Batch normalization after concatenation
         self.batch_norm = nn.BatchNorm2d(out_channels)

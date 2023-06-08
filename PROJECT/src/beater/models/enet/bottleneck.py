@@ -399,9 +399,9 @@ class Upsampling(Bottleneck):
 
         # main conv: Transposed convolution
         self.ext_trans = nn.ConvTranspose2d(internal_channels,
-                                                internal_channels,
-                                                kernel_size = 2,
-                                                stride = 2,)
+                                            internal_channels,
+                                            kernel_size = 2,
+                                            stride = 2,)
         self.ext_trans_bnorm = nn.BatchNorm2d(internal_channels)
         self.ext_trans_activation = self.activation
 
